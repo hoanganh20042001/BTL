@@ -1,0 +1,1 @@
+//# sourceMappingURL=news.repository.js.map
