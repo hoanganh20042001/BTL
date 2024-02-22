@@ -12,7 +12,7 @@ import {
 
 
 @Entity('product')
-export class Account extends BaseEntity {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,11 +28,17 @@ export class Account extends BaseEntity {
   @Column({ name: 'categoryId', nullable: true })
   categoryId: number;
 
+  @Column({ name: 'typeId', nullable: true })
+  typeId: number;
+
+  @Column({ name: 'quantity', nullable: true })
+  quantity: number;
+
   @Column({ name: 'price', nullable: true })
   price: number;
 
-  @Column({ name: 'isActive', nullable: true })
-  isActive: number;
+  @Column({ name: 'status', nullable: true })
+  status: string;
 
   @Column({ name: 'description', nullable: true })
   description: string;

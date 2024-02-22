@@ -13,6 +13,10 @@ import { CategoryModule } from './category/category.module';
 import { UploadsModule } from './upload/upload.module';
 import { ProductModule } from './product/product.module';
 import { NewsModule } from './news/news.module';
+import { DiscountModule } from './discount/discount.module';
+import { TypeModule } from './type/type.module';
+import { MailModule } from './mail/mail.module';
+import { BrandModule } from './brand/brand.module';
 
 require('dotenv').config();
 @Module({
@@ -27,7 +31,11 @@ require('dotenv').config();
     CategoryModule,
     UploadsModule,
     ProductModule,
-    NewsModule
+    NewsModule,
+    DiscountModule,
+    TypeModule,
+    MailModule,
+    BrandModule
 
   ],
   controllers: [AppController],

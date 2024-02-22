@@ -1,10 +1,10 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 
-export class createCategoryTable1707967579803 implements MigrationInterface {
+export class createBrandTable1708590082081 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(
-            'CREATE TABLE `category` ( ' +
+            'CREATE TABLE `brand` ( ' +
             '`id` int NOT NULL AUTO_INCREMENT, ' +
             '`name` varchar(200) NULL,' +
             '`description` varchar(200) NULL,' +
@@ -15,7 +15,6 @@ export class createCategoryTable1707967579803 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query('DROP TABLE `category`');
+        await queryRunner.query('DROP TABLE `type`');
     }
-
 }
