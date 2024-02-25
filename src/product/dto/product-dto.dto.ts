@@ -47,7 +47,17 @@ export class createProductDto {
   @ApiProperty()
   @IsNumber()
   @IsOptional()
-  brand: number;
+  brandId: number;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  sold: number;
+
+  @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  date: Date;
 
   @ApiProperty()
   @IsString()
@@ -89,6 +99,11 @@ export class updateProductDto {
   @ApiProperty()
   @IsNumber()
   @IsOptional()
+  brandId: number;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
   quantity: number;
 
   @ApiProperty()
@@ -102,7 +117,14 @@ export class updateProductDto {
   status: string;
 
   @ApiProperty()
+  @IsDate()
+  @IsOptional()
+  date: Date;
+
+  @ApiProperty()
   @IsString()
   @IsOptional()
   description: string;
 }
+
+

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TypeController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const auth_guard_1 = require("../auth/guards/auth.guard");
 const list_all_type_dto_dto_1 = require("./dto/list-all-type-dto.dto");
 const type_dto_dto_1 = require("./dto/type-dto.dto");
 const type_service_1 = require("./type.service");
@@ -40,8 +39,6 @@ let TypeController = class TypeController {
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -49,8 +46,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TypeController.prototype, "createType", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('list-all'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -58,8 +53,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TypeController.prototype, "listAllType", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('detail'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -67,8 +60,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TypeController.prototype, "getDetailType", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('update'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -76,8 +67,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TypeController.prototype, "updateType", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('delete'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -85,8 +74,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], TypeController.prototype, "deleteType", null);
 TypeController = __decorate([
-    (0, swagger_1.ApiTags)('Type'),
-    (0, common_1.Controller)('Type'),
+    (0, swagger_1.ApiTags)('type'),
+    (0, common_1.Controller)('type'),
     __metadata("design:paramtypes", [type_service_1.TypeService])
 ], TypeController);
 exports.TypeController = TypeController;

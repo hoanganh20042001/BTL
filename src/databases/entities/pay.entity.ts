@@ -12,7 +12,7 @@ import {
 
 
 @Entity('pay')
-export class Account extends BaseEntity {
+export class Pay extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

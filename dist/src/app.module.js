@@ -25,6 +25,10 @@ const discount_module_1 = require("./discount/discount.module");
 const type_module_1 = require("./type/type.module");
 const mail_module_1 = require("./mail/mail.module");
 const brand_module_1 = require("./brand/brand.module");
+const cart_module_1 = require("./cart/cart.module");
+const order_module_1 = require("./order/order.module");
+const pay_module_1 = require("./pay/pay.module");
+const review_module_1 = require("./review/review.module");
 require('dotenv').config();
 let AppModule = class AppModule {
 };
@@ -45,7 +49,11 @@ AppModule = __decorate([
             discount_module_1.DiscountModule,
             type_module_1.TypeModule,
             mail_module_1.MailModule,
-            brand_module_1.BrandModule
+            brand_module_1.BrandModule,
+            cart_module_1.CartModule,
+            order_module_1.OrderModule,
+            pay_module_1.PayModule,
+            review_module_1.ReviewModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

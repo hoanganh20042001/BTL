@@ -9,44 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Account = void 0;
+exports.Pay = void 0;
 const typeorm_1 = require("typeorm");
-let Account = class Account extends typeorm_1.BaseEntity {
+let Pay = class Pay extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Account.prototype, "id", void 0);
+], Pay.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'accountNumber', nullable: true }),
     __metadata("design:type", String)
-], Account.prototype, "accountNumber", void 0);
+], Pay.prototype, "accountNumber", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'date', nullable: true }),
     __metadata("design:type", Date)
-], Account.prototype, "date", void 0);
+], Pay.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'cost', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "cost", void 0);
+], Pay.prototype, "cost", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'status', nullable: true }),
     __metadata("design:type", String)
-], Account.prototype, "status", void 0);
+], Pay.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'bankName', nullable: true }),
     __metadata("design:type", String)
-], Account.prototype, "bankName", void 0);
+], Pay.prototype, "bankName", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "createdAt", void 0);
+], Pay.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updatedAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "updatedAt", void 0);
-Account = __decorate([
+], Pay.prototype, "updatedAt", void 0);
+Pay = __decorate([
     (0, typeorm_1.Entity)('pay')
-], Account);
-exports.Account = Account;
+], Pay);
+exports.Pay = Pay;
 //# sourceMappingURL=pay.entity.js.map

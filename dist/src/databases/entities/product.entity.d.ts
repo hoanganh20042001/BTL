@@ -6,8 +6,11 @@ export declare class Product extends BaseEntity {
     discount: number;
     categoryId: number;
     typeId: number;
+    brandId: number;
     quantity: number;
     price: number;
+    sold: number;
+    date: Date;
     status: string;
     description: string;
     createdAt: Date;

@@ -12,7 +12,7 @@ import {
 
 
 @Entity('order')
-export class Account extends BaseEntity {
+export class Order extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,7 +26,7 @@ export class Account extends BaseEntity {
   userId: number;
 
   @Column({ name: 'payId', nullable: true })
-  payId: string;
+  payId: number;
   
   @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;

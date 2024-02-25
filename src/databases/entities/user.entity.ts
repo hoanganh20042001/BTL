@@ -34,7 +34,7 @@ export class User extends BaseEntity {
   @Column({ name: 'addressId' })
   addressId: number;
 
-  @Column({ name: 'isActive', default: 1 })
+  @Column({ name: 'isActive', default: 0 })
   isActive: number;
 
   @CreateDateColumn({ name: 'createdAt' })

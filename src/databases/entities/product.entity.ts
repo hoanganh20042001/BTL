@@ -31,11 +31,20 @@ export class Product extends BaseEntity {
   @Column({ name: 'typeId', nullable: true })
   typeId: number;
 
+  @Column({ name: 'brandId', nullable: true })
+  brandId: number;
+
   @Column({ name: 'quantity', nullable: true })
   quantity: number;
 
   @Column({ name: 'price', nullable: true })
   price: number;
+
+  @Column({ name: 'sold', nullable: true })
+  sold: number;
+
+  @Column({ name: 'date', nullable: true })
+  date:Date;
 
   @Column({ name: 'status', nullable: true })
   status: string;

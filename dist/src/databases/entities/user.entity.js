@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:type", Number)
 ], User.prototype, "addressId", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'isActive', default: 1 }),
+    (0, typeorm_1.Column)({ name: 'isActive', default: 0 }),
     __metadata("design:type", Number)
 ], User.prototype, "isActive", void 0);
 __decorate([

@@ -37,6 +37,9 @@ let ProductController = class ProductController {
     async deleteProduct(payload) {
         return this.ProductService.deleteProduct(payload);
     }
+    async filterProduct(payload) {
+        return this.ProductService.filterProduct(payload);
+    }
 };
 __decorate([
     (0, common_1.Post)('create'),
@@ -73,6 +76,13 @@ __decorate([
     __metadata("design:paramtypes", [list_all_product_dto_dto_1.getDetailProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "deleteProduct", null);
+__decorate([
+    (0, common_1.Get)('filter'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [list_all_product_dto_dto_1.filterProductDto]),
+    __metadata("design:returntype", Promise)
+], ProductController.prototype, "filterProduct", null);
 ProductController = __decorate([
     (0, swagger_1.ApiTags)('product'),
     (0, common_1.Controller)('product'),

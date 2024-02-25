@@ -2,7 +2,7 @@ import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthenticationGuard } from 'src/auth/guards/auth.guard';
 
-import { getDetailProductDto,listAllProductDto } from './dto/list-all-product-dto.dto';
+import { filterProductDto, getDetailProductDto,listAllProductDto } from './dto/list-all-product-dto.dto';
 import { createProductDto, updateProductDto } from './dto/product-dto.dto';
 import { ProductService } from './product.service';
 
@@ -52,5 +52,12 @@ export class ProductController {
   @Post('delete')
   async deleteProduct(@Query() payload: getDetailProductDto) {
     return this.ProductService.deleteProduct(payload);
+  }
+
+   // @UseGuards(AuthenticationGuard)
+  // @ApiBearerAuth()
+  @Get('filter')
+  async filterProduct(@Query() payload: filterProductDto) {
+    return this.ProductService.filterProduct(payload);
   }
 }

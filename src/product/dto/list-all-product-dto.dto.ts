@@ -28,3 +28,34 @@ export class getDetailProductDto {
   @IsNumber()
   ProductId: number;
 }
+export class filterProductDto {
+  // @ApiProperty()
+  // @IsNumber()
+  // @IsOptional()
+  // discount: number;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  category: string;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  type: string;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  brand: string;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  minPrice: number;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  maxPrice: number;
+}

@@ -12,7 +12,7 @@ import {
 
 
 @Entity('discount')
-export class Account extends BaseEntity {
+export class Discount extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 

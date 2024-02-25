@@ -1,5 +1,5 @@
 import { BaseEntity } from 'typeorm';
-export declare class Account extends BaseEntity {
+export declare class Cart extends BaseEntity {
     id: number;
     productId: number;
     quantity: number;

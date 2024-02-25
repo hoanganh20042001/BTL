@@ -7,11 +7,11 @@ import { TypeRepository } from './type.repository';
 @Injectable()
 export class TypeService {
   constructor(
-    private readonly TypeRepository: TypeRepository
+    private readonly typeRepository: TypeRepository
   ) { }
   async createType(input: createTypeDto) {
     try {
-      const newType = this.TypeRepository.create(input);
+      const newType = this.typeRepository.create(input);
       return await newType.save();
     } catch (error) {
       throw new BadRequestException('Có lỗi xảy ra!')
@@ -21,7 +21,7 @@ export class TypeService {
 
   async listAllType(payload: listAllTypeDto) {
     const { search, limit, page } = payload;
-    const listType = this.TypeRepository
+    const listType = this.typeRepository
       .createQueryBuilder('b')
       .select('b.*')
       .orderBy('b.id', 'ASC')
@@ -49,28 +49,28 @@ export class TypeService {
 
   async getDetailType(payload: getDetailTypeDto) {
     const { TypeId } = payload;
-    const Type = await this.TypeRepository.findOne(TypeId);
+    const Type = await this.typeRepository.findOne(TypeId);
     return Type;
 
   }
 
   async updateType(payload: updateTypeDto) {
 
-    const findTypeById = await this.TypeRepository.findOne(payload.TypeId);
+    const findTypeById = await this.typeRepository.findOne(payload.TypeId);
     if (!findTypeById) {
       throw new BadRequestException("Type_is_not_exist");
     }
     const updatedItem = { ...findTypeById, ...payload };
-    return await this.TypeRepository.save(updatedItem);
+    return await this.typeRepository.save(updatedItem);
   }
 
   async deleteType(payload: getDetailTypeDto) {
     const { TypeId } = payload;
-    const Type = await this.TypeRepository.findOne(TypeId);
+    const Type = await this.typeRepository.findOne(TypeId);
     if (!Type) {
       throw new BadRequestException("Type_is_not_exist");
     }
-    await this.TypeRepository.remove(Type);
+    await this.typeRepository.remove(Type);
     return { status: 200, message: 'Xóa thành công!' };
   }
 }

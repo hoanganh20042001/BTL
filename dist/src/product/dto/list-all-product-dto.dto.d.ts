@@ -6,3 +6,10 @@ export declare class listAllProductDto {
 export declare class getDetailProductDto {
     ProductId: number;
 }
+export declare class filterProductDto {
+    category: string;
+    type: string;
+    brand: string;
+    minPrice: number;
+    maxPrice: number;
+}

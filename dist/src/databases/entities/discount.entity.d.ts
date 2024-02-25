@@ -1,5 +1,5 @@
 import { BaseEntity } from 'typeorm';
-export declare class Account extends BaseEntity {
+export declare class Discount extends BaseEntity {
     id: number;
     name: string;
     value: number;

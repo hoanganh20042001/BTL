@@ -74,8 +74,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CategoryController.prototype, "deleteCategory", null);
 CategoryController = __decorate([
-    (0, swagger_1.ApiTags)('Category'),
-    (0, common_1.Controller)('Category'),
+    (0, swagger_1.ApiTags)('category'),
+    (0, common_1.Controller)('category'),
     __metadata("design:paramtypes", [category_service_1.CategoryService])
 ], CategoryController);
 exports.CategoryController = CategoryController;

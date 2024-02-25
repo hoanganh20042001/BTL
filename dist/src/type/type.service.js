@@ -13,12 +13,12 @@ exports.TypeService = void 0;
 const common_1 = require("@nestjs/common");
 const type_repository_1 = require("./type.repository");
 let TypeService = class TypeService {
-    constructor(TypeRepository) {
-        this.TypeRepository = TypeRepository;
+    constructor(typeRepository) {
+        this.typeRepository = typeRepository;
     }
     async createType(input) {
         try {
-            const newType = this.TypeRepository.create(input);
+            const newType = this.typeRepository.create(input);
             return await newType.save();
         }
         catch (error) {
@@ -27,7 +27,7 @@ let TypeService = class TypeService {
     }
     async listAllType(payload) {
         const { search, limit, page } = payload;
-        const listType = this.TypeRepository
+        const listType = this.typeRepository
             .createQueryBuilder('b')
             .select('b.*')
             .orderBy('b.id', 'ASC')
@@ -49,24 +49,24 @@ let TypeService = class TypeService {
     }
     async getDetailType(payload) {
         const { TypeId } = payload;
-        const Type = await this.TypeRepository.findOne(TypeId);
+        const Type = await this.typeRepository.findOne(TypeId);
         return Type;
     }
     async updateType(payload) {
-        const findTypeById = await this.TypeRepository.findOne(payload.TypeId);
+        const findTypeById = await this.typeRepository.findOne(payload.TypeId);
         if (!findTypeById) {
             throw new common_1.BadRequestException("Type_is_not_exist");
         }
         const updatedItem = Object.assign(Object.assign({}, findTypeById), payload);
-        return await this.TypeRepository.save(updatedItem);
+        return await this.typeRepository.save(updatedItem);
     }
     async deleteType(payload) {
         const { TypeId } = payload;
-        const Type = await this.TypeRepository.findOne(TypeId);
+        const Type = await this.typeRepository.findOne(TypeId);
         if (!Type) {
             throw new common_1.BadRequestException("Type_is_not_exist");
         }
-        await this.TypeRepository.remove(Type);
+        await this.typeRepository.remove(Type);
         return { status: 200, message: 'Xóa thành công!' };
     }
 };

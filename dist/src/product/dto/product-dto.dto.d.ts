@@ -7,7 +7,9 @@ export declare class createProductDto {
     quantity: number;
     price: number;
     status: string;
-    brand: number;
+    brandId: number;
+    sold: number;
+    date: Date;
     description: string;
 }
 export declare class updateProductDto {
@@ -17,8 +19,10 @@ export declare class updateProductDto {
     discount: number;
     categoryId: number;
     typeId: number;
+    brandId: number;
     quantity: number;
     price: number;
     status: string;
+    date: Date;
     description: string;
 }

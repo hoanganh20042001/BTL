@@ -6,8 +6,8 @@ import { getDetailCategoryDto,listAllCategoryDto } from './dto/list-all-category
 import { createCategoryDto, updateCategoryDto } from './dto/category-dto.dto';
 import { CategoryService } from './category.service';
 
-@ApiTags('Category')
-@Controller('Category')
+@ApiTags('category')
+@Controller('category')
 export class CategoryController {
   constructor(
     private readonly CategoryService: CategoryService

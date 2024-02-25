@@ -12,7 +12,7 @@ import {
 
 
 @Entity('news')
-export class Account extends BaseEntity {
+export class News extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -28,8 +28,8 @@ export class Account extends BaseEntity {
   @Column({ name: 'liked', nullable: true })
   liked: number;
 
-  @Column({ name: 'userId', nullable: true })
-  userId: number;
+  // @Column({ name: 'userId', nullable: true })
+  // userId: number;
 
   @Column({ name: 'content', nullable: true })
   content: string;

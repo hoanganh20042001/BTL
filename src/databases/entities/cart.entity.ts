@@ -11,8 +11,8 @@ import {
 } from 'typeorm';
 
 
-@Entity('review')
-export class Account extends BaseEntity {
+@Entity('cart')
+export class Cart extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
