@@ -6,6 +6,7 @@ export declare class createPayDto {
     date: Date;
     bankName: string;
     discountId: number;
+    userId: number;
     status: string;
     orderItems: orderItemDto[];
 }

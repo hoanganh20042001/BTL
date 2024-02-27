@@ -16,6 +16,6 @@ export const PRODUCT_NOTIFICATION = {
   DELIVERY:'Đang giao hàng'
 };
 export enum PAY_STATUS {
-  DTT = 'ĐÃ THANH TOÁN',
-  CTT = 'CHƯA THANH TOÁN',
+  DTT = 'DTT',
+  CTT = 'CTT',
 }

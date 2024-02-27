@@ -32,6 +32,11 @@ export class createPayDto {
   discountId: number;
 
   @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  userId: number;
+
+  @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
   status: string;

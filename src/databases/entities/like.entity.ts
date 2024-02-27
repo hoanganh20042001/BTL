@@ -12,7 +12,7 @@ import {
 @Entity('like')
 export class Like extends BaseEntity {
   @PrimaryColumn()
-  productId: number;
+  newsId: number;
 
   @PrimaryColumn()
   userId: number;

@@ -18,4 +18,14 @@ export class updateUserDto {
   @IsOptional()
   phoneNumber: string;
 
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  password: string;
+
 }

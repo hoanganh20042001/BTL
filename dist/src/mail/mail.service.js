@@ -43,13 +43,15 @@ let MailService = class MailService {
         });
     }
     async paymentSuccessful(obj, lang = 'en') {
-        console.log(obj.emailTo);
+        console.log(obj.products);
         await this.mailerService.sendMail({
             to: obj.emailTo,
             subject: obj.subject,
             template: `./payment-successful.${lang}.hbs`,
             context: {
                 name: obj.name,
+                products: obj.products,
+                value: obj.value,
                 cost: obj.cost,
                 bankName: obj.bankName,
             },

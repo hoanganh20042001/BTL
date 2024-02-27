@@ -6,4 +6,4 @@ import { MinioService } from './minio.service';
   providers: [MinioService],
   exports: [MinioService],
 })
-export class MinioModule {}
+export class MinioModule { }
