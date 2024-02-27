@@ -7,12 +7,12 @@
     <p>Thân gửi {{ name }},</p>
     <p>Đơn hàng của bạn bao gồm:</p>
     <ul>
-        {% for product in products %}
-            <li>Sản phẩm:{{ product.product }} - Số lượng: {{ product.quantity }} - Giảm giá sản phẩm: {{product.discout}}% - Đơn giá: {{ product.discountedPrice }} </li>
-        {% endfor %}
+        {{#each products}}
+            <li>Sản phẩm: {{this.product}} - Số lượng: {{ this.quantity }} - Giảm giá sản phẩm: {{ this.discount }}% - Đơn giá: {{ this.discountedPrice }} </li>
+        {{/each}}
     </ul>
-    <p>Giảm giá của shop{{value}} đồng</p>
+    <p>Giảm giá của shop: {{ value }} đồng</p>
     <p>Giao dịch thành công, tổng số tiền là <strong>{{ cost }}</strong></p>
-    <p>Tên tài khoản:{{bankName}}</p>
+    <p>Tên tài khoản: {{ bankName }}</p>
 </body>
 </html>

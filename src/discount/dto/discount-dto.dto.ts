@@ -10,6 +10,11 @@ export class createDiscountDto {
   name: string;
 
   @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  value: number;
+
+  @ApiProperty()
   @IsString()
   @IsOptional()
   description: string;
@@ -27,7 +32,13 @@ export class updateDiscountDto {
   name: string;
 
   @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  value: number;
+
+  @ApiProperty()
   @IsString()
   @IsOptional()
   description: string;
+
 }

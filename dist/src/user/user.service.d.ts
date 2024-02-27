@@ -13,11 +13,12 @@ export declare class UserService {
         UserId: number;
         fullName: string;
         phoneNumber: string;
+        email: string;
+        password: string;
         id: number;
         userName: string;
         passWord: string;
         roleId: number;
-        email: string;
         addressId: number;
         isActive: number;
         createdAt: Date;

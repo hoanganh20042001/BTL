@@ -21,7 +21,7 @@ exports.PRODUCT_NOTIFICATION = {
 };
 var PAY_STATUS;
 (function (PAY_STATUS) {
-    PAY_STATUS["DTT"] = "\u0110\u00C3 THANH TO\u00C1N";
-    PAY_STATUS["CTT"] = "CH\u01AFA THANH TO\u00C1N";
+    PAY_STATUS["DTT"] = "DTT";
+    PAY_STATUS["CTT"] = "CTT";
 })(PAY_STATUS = exports.PAY_STATUS || (exports.PAY_STATUS = {}));
 //# sourceMappingURL=constants.js.map

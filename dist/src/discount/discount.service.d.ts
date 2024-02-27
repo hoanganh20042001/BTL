@@ -13,9 +13,9 @@ export declare class DiscountService {
     updateDiscount(payload: updateDiscountDto): Promise<{
         DiscountId: number;
         name: string;
+        value: number;
         description: string;
         id: number;
-        value: number;
         isActive: number;
         createdAt: Date;
         updatedAt: Date;

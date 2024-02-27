@@ -3,7 +3,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 @Injectable()
 export class MailService {
     constructor(private mailerService: MailerService) { }
-    async sendNewUser(obj: { emailTo, subject, name, code,cccd }, lang = 'en') {
+    async sendNewUser(obj: { emailTo, subject, name, code, cccd }, lang = 'en') {
         console.log(obj.name);
         await this.mailerService.sendMail({
             to: obj.emailTo,
@@ -13,12 +13,12 @@ export class MailService {
             context: { // filling curly brackets with content
                 name: obj.name,
                 code: obj.code,
-                cccd:obj.cccd,
+                cccd: obj.cccd,
             },
         });
     }
-    
-    async sendNewPassword(obj: { emailTo, subject, name, code,cccd }, lang = 'en') {
+
+    async sendNewPassword(obj: { emailTo, subject, name, code, cccd }, lang = 'en') {
         console.log(obj.name);
         await this.mailerService.sendMail({
             to: obj.emailTo,
@@ -28,25 +28,25 @@ export class MailService {
             context: { // filling curly brackets with content
                 name: obj.name,
                 code: obj.code,
-                cccd:obj.cccd,
+                cccd: obj.cccd,
             },
         });
     }
 
-    async paymentSuccessful(obj: { emailTo, subject, name,cost,bankName }, lang = 'en') {
-      console.log(obj.emailTo);
-      await this.mailerService.sendMail({
-          to: obj.emailTo,
-          // from: '"WOSS"', // override default from
-          subject: obj.subject,
-          template: `./payment-successful.${lang}.hbs`, // `.hbs` extension is appended automatically
-          context: { // filling curly brackets with content
-              name: obj.name,
-            //   products: obj.products,
-            //   value:obj.value,
-              cost:obj.cost,
-              bankName:obj.bankName,
-          },
-      });
-  }
+    async paymentSuccessful(obj: { emailTo, subject, products: any[], value, name, cost, bankName }, lang = 'en') {
+        console.log(obj.products);
+        await this.mailerService.sendMail({
+            to: obj.emailTo,
+            // from: '"WOSS"', // override default from
+            subject: obj.subject,
+            template: `./payment-successful.${lang}.hbs`, // `.hbs` extension is appended automatically
+            context: { // filling curly brackets with content
+                name: obj.name,
+                products: obj.products,
+                value: obj.value,
+                cost: obj.cost,
+                bankName: obj.bankName,
+            },
+        });
+    }
 }

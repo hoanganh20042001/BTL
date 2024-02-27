@@ -19,6 +19,8 @@ export declare class MailService {
     paymentSuccessful(obj: {
         emailTo: any;
         subject: any;
+        products: any[];
+        value: any;
         name: any;
         cost: any;
         bankName: any;

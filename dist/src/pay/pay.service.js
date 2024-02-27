@@ -28,9 +28,13 @@ let PayService = class PayService {
         this.mailService = mailService;
     }
     async createPay(input) {
+        let cost = 0;
+        const discount = await this.discountRepository.findOne({ id: input.discountId });
+        if (discount) {
+            cost = cost + discount.value;
+        }
         try {
             const newPay = this.payRepository.create(input);
-            let cost = 0;
             await newPay.save();
             await Promise.all(input.orderItems.map(async (orderItem) => {
                 const order = await this.orderRepository.findOne({ id: orderItem.orderId });
@@ -47,8 +51,6 @@ let PayService = class PayService {
                     throw new common_1.NotFoundException(`Order with ID ${orderItem.orderId} not found`);
                 }
             }));
-            const discount = this.discountRepository.findOne({ id: input.discountId });
-            cost = cost + (await discount).value;
             newPay.cost = cost;
             await newPay.save();
             return newPay;
@@ -193,11 +195,14 @@ let PayService = class PayService {
             .leftJoin('order', 'o', 'o.productId = p.id')
             .where('o.payId = :payId', { payId: payload.PayId })
             .getRawMany();
+        console.log(findUser);
         if (payload.status === constants_1.PAY_STATUS.DTT) {
             await this.mailService.paymentSuccessful({
                 emailTo: findUser.email,
                 subject: 'Thanh toán hóa đơn thành công',
                 name: findUser.fullName,
+                products: products,
+                value: discount ? discount.value : 0,
                 cost: findPayById.cost,
                 bankName: findPayById.bankName
             });

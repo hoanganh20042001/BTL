@@ -16,7 +16,7 @@ let Like = class Like extends typeorm_1.BaseEntity {
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
-], Like.prototype, "productId", void 0);
+], Like.prototype, "newsId", void 0);
 __decorate([
     (0, typeorm_1.PrimaryColumn)(),
     __metadata("design:type", Number)
