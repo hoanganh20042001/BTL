@@ -26,15 +26,16 @@ let OrderService = class OrderService {
         }
     }
     async listAllOrder(payload) {
-        const { search, limit, page } = payload;
+        const { search, userId } = payload;
         const listOrder = this.OrderRepository
-            .createQueryBuilder('b')
-            .select('b.*')
-            .orderBy('b.id', 'ASC')
-            .limit(limit)
-            .offset(limit * (page - 1));
+            .createQueryBuilder('o')
+            .select(['o.*',
+            'p.name as product'
+        ])
+            .leftJoin('product', 'p', 'o.productId=p.id')
+            .where('o.userId = :userId', { userId: payload.userId });
         if (search) {
-            listOrder.andWhere('( b.name LIKE :search OR b.description LIKE :search )', { search: `%${search}%` });
+            listOrder.andWhere('( p.name LIKE :search )', { search: `%${search}%` });
         }
         try {
             const [list, count] = await Promise.all([
@@ -53,6 +54,14 @@ let OrderService = class OrderService {
         return Order;
     }
     async updateOrder(payload) {
+        const findOrderById = await this.OrderRepository.findOne(payload.OrderId);
+        if (!findOrderById) {
+            throw new common_1.BadRequestException("Order_is_not_exist");
+        }
+        const updatedItem = Object.assign(Object.assign({}, findOrderById), payload);
+        return await this.OrderRepository.save(updatedItem);
+    }
+    async pay(payload) {
         const findOrderById = await this.OrderRepository.findOne(payload.OrderId);
         if (!findOrderById) {
             throw new common_1.BadRequestException("Order_is_not_exist");

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PRODUCT_NOTIFICATION = exports.PRODUCT_STATUS = exports.OTP = void 0;
+exports.PAY_STATUS = exports.PRODUCT_NOTIFICATION = exports.PRODUCT_STATUS = exports.OTP = void 0;
 exports.OTP = {
     REGENERATE_OTP_TIME: 300
 };
@@ -19,4 +19,9 @@ exports.PRODUCT_NOTIFICATION = {
     PAID: 'Đã thanh toán',
     DELIVERY: 'Đang giao hàng'
 };
+var PAY_STATUS;
+(function (PAY_STATUS) {
+    PAY_STATUS["DTT"] = "\u0110\u00C3 THANH TO\u00C1N";
+    PAY_STATUS["CTT"] = "CH\u01AFA THANH TO\u00C1N";
+})(PAY_STATUS = exports.PAY_STATUS || (exports.PAY_STATUS = {}));
 //# sourceMappingURL=constants.js.map

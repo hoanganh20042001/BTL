@@ -21,10 +21,21 @@ import { CartModule } from './cart/cart.module';
 import { OrderModule } from './order/order.module';
 import { PayModule } from './pay/pay.module';
 import { ReviewModule } from './review/review.module';
+import { AddressModule } from './address/address.module';
+import { BackupModule } from './backup/backup.module';
+import { MinioModule } from './minio/minio.module';
+import { ConfigModule } from '@nestjs/config';
+import { getBackupConfig } from './config/backup.config';
+import mail from './config/mail.config';
 
 require('dotenv').config();
 @Module({
-  imports: [
+  imports: [ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: ['.env'],
+    load: [mail, getBackupConfig],
+    cache: true,
+  }),
     OrmModule,
     ExampleModule,
     UserModule,
@@ -43,7 +54,10 @@ require('dotenv').config();
     CartModule,
     OrderModule,
     PayModule,
-    ReviewModule
+    ReviewModule,
+    AddressModule,
+    BackupModule,
+    MinioModule
 
   ],
   controllers: [AppController],

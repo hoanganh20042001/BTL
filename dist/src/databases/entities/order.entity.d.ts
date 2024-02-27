@@ -5,6 +5,7 @@ export declare class Order extends BaseEntity {
     quantity: number;
     userId: number;
     payId: number;
+    status: number;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -30,6 +30,14 @@ __decorate([
     __metadata("design:type", Number)
 ], Pay.prototype, "cost", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'discountId', nullable: true }),
+    __metadata("design:type", Number)
+], Pay.prototype, "discountId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'userId', nullable: true }),
+    __metadata("design:type", Number)
+], Pay.prototype, "userId", void 0);
+__decorate([
     (0, typeorm_1.Column)({ name: 'status', nullable: true }),
     __metadata("design:type", String)
 ], Pay.prototype, "status", void 0);

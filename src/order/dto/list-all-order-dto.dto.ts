@@ -16,6 +16,10 @@ export class listAllOrderDto {
   // @IsNumber()
   // @Min(1)
   // limit: number;
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  userId: number;
 
   @ApiProperty({ required: false })
   @IsString()

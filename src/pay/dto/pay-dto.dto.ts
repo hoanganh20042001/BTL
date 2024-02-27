@@ -1,7 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsArray, IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional, IsString, ValidateNested } from "class-validator";
 
+export class orderItemDto {
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  orderId: number;
+
+}
 export class createPayDto {
 
   @ApiProperty({ required: false })
@@ -18,6 +25,21 @@ export class createPayDto {
   @IsString()
   @IsOptional()
   bankName: string;
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  discountId: number;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  status: string;
+
+  @ApiProperty({ type: [orderItemDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  orderItems: orderItemDto[];
 }
 
 export class updatePayDto {

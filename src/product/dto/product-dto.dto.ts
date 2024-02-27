@@ -10,11 +10,6 @@ export class createProductDto {
   name: string;
 
   @ApiProperty()
-  @IsString()
-  @IsOptional()
-  image: string;
-
-  @ApiProperty()
   @IsNumber()
   @IsOptional()
   discount: number;
@@ -39,20 +34,15 @@ export class createProductDto {
   @IsOptional()
   price: number;
 
-  @ApiProperty()
-  @IsString()
-  @IsOptional()
-  status: string;
+  // @ApiProperty({default:'AVAILABLE'})
+  // @IsString()
+  // @IsOptional()
+  // status: string;
 
   @ApiProperty()
   @IsNumber()
   @IsOptional()
   brandId: number;
-
-  @ApiProperty()
-  @IsNumber()
-  @IsOptional()
-  sold: number;
 
   @ApiProperty()
   @IsDate()
@@ -111,7 +101,7 @@ export class updateProductDto {
   @IsOptional()
   price: number;
 
-  @ApiProperty()
+  @ApiProperty({default:'AVAILABLE'})
   @IsString()
   @IsOptional()
   status: string;
@@ -125,6 +115,10 @@ export class updateProductDto {
   @IsString()
   @IsOptional()
   description: string;
+}
+export class FileUploadDto {
+  @ApiProperty({ type: 'string', format: 'binary' })
+  file: any;
 }
 
 

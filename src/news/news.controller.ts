@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthenticationGuard } from 'src/auth/guards/auth.guard';
 
 import { getDetailNewsDto,listAllNewsDto } from './dto/list-all-news-dto.dto';
-import { createNewsDto, updateNewsDto } from './dto/news-dto.dto';
+import { addLikeDto, addViewDto, createNewsDto, updateNewsDto } from './dto/news-dto.dto';
 import { NewsService } from './news.service';
 
 @ApiTags('news')
@@ -13,8 +13,8 @@ export class NewsController {
     private readonly NewsService: NewsService
   ) { }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('create')
   async createNews(
     @Body() payload: createNewsDto
@@ -22,22 +22,39 @@ export class NewsController {
     return this.NewsService.createNews(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('add-like')
+  async addLike(
+    @Body() payload: addLikeDto
+  ) {
+    return this.NewsService.addLike(payload);
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('add-view')
+  async addView(
+    @Body() payload: addViewDto
+  ) {
+    return this.NewsService.addView(payload);
+  }
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('list-all')
   async listAllNews(@Query() payload: listAllNewsDto) {
     return this.NewsService.listAllNews(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('detail')
   async getDetailNews(@Query() payload: getDetailNewsDto) {
     return this.NewsService.getDetailNews(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('update')
   async updateNews(
     @Body() payload: updateNewsDto
@@ -47,8 +64,8 @@ export class NewsController {
     );
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('delete')
   async deleteNews(@Query() payload: getDetailNewsDto) {
     return this.NewsService.deleteNews(payload);

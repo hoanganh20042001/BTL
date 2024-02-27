@@ -25,6 +25,12 @@ export class Pay extends BaseEntity {
   @Column({ name: 'cost', nullable: true })
   cost: number;
 
+  @Column({ name: 'discountId', nullable: true })
+  discountId: number;
+
+  @Column({ name: 'userId', nullable: true })
+  userId: number;
+
   @Column({ name: 'status', nullable: true })
   status: string;
 

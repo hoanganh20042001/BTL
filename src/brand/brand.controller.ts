@@ -13,8 +13,8 @@ export class BrandController {
     private readonly BrandService: BrandService
   ) { }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('create')
   async createBrand(
     @Body() payload: createBrandDto
@@ -22,22 +22,22 @@ export class BrandController {
     return this.BrandService.createBrand(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('list-all')
   async listAllBrand(@Query() payload: listAllBrandDto) {
     return this.BrandService.listAllBrand(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('detail')
   async getDetailBrand(@Query() payload: getDetailBrandDto) {
     return this.BrandService.getDetailBrand(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('update')
   async updateBrand(
     @Body() payload: updateBrandDto
@@ -47,8 +47,8 @@ export class BrandController {
     );
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('delete')
   async deleteBrand(@Query() payload: getDetailBrandDto) {
     return this.BrandService.deleteBrand(payload);

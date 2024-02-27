@@ -34,6 +34,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Order.prototype, "payId", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'status', default: 0 }),
+    __metadata("design:type", Number)
+], Order.prototype, "status", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt' }),
     __metadata("design:type", Date)
 ], Order.prototype, "createdAt", void 0);

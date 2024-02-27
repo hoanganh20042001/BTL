@@ -15,6 +15,7 @@ const product_service_1 = require("./product.service");
 const brand_repository_1 = require("../brand/brand.repository");
 const category_repository_1 = require("../category/category.repository");
 const type_repository_1 = require("../type/type.repository");
+const minio_service_1 = require("../minio/minio.service");
 let ProductModule = class ProductModule {
 };
 ProductModule = __decorate([
@@ -26,7 +27,9 @@ ProductModule = __decorate([
                 category_repository_1.CategoryRepository,
             ])],
         controllers: [product_controller_1.ProductController],
-        providers: [product_service_1.ProductService]
+        providers: [product_service_1.ProductService,
+            minio_service_1.MinioService,
+        ]
     })
 ], ProductModule);
 exports.ProductModule = ProductModule;

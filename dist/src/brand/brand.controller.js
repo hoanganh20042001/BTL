@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrandController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const auth_guard_1 = require("../auth/guards/auth.guard");
 const list_all_brand_dto_dto_1 = require("./dto/list-all-brand-dto.dto");
 const brand_dto_dto_1 = require("./dto/brand-dto.dto");
 const brand_service_1 = require("./brand.service");
@@ -39,6 +40,8 @@ let BrandController = class BrandController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -46,6 +49,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BrandController.prototype, "createBrand", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('list-all'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -53,6 +58,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BrandController.prototype, "listAllBrand", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('detail'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -60,6 +67,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BrandController.prototype, "getDetailBrand", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('update'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -67,6 +76,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BrandController.prototype, "updateBrand", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('delete'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

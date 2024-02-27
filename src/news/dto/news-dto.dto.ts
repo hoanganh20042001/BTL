@@ -66,3 +66,28 @@ export class updateNewsDto {
   @IsOptional()
   content: string;
 }
+
+export class addLikeDto {
+
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  newsId: number;
+
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  userId: number;
+
+}
+
+export class addViewDto {
+
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  newsId: number;
+
+
+}
+

@@ -30,6 +30,10 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "discount", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'discountedPrice', default: 0 }),
+    __metadata("design:type", Number)
+], Product.prototype, "discountedPrice", void 0);
+__decorate([
     (0, typeorm_1.Column)({ name: 'categoryId', nullable: true }),
     __metadata("design:type", Number)
 ], Product.prototype, "categoryId", void 0);
@@ -58,7 +62,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Product.prototype, "date", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'status', nullable: true }),
+    (0, typeorm_1.Column)({ name: 'status', default: 'AVAILABLE' }),
     __metadata("design:type", String)
 ], Product.prototype, "status", void 0);
 __decorate([

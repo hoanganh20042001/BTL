@@ -15,3 +15,7 @@ export declare const PRODUCT_NOTIFICATION: {
     PAID: string;
     DELIVERY: string;
 };
+export declare enum PAY_STATUS {
+    DTT = "\u0110\u00C3 THANH TO\u00C1N",
+    CTT = "CH\u01AFA THANH TO\u00C1N"
+}

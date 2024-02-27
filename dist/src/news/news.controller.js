@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewsController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
+const auth_guard_1 = require("../auth/guards/auth.guard");
 const list_all_news_dto_dto_1 = require("./dto/list-all-news-dto.dto");
 const news_dto_dto_1 = require("./dto/news-dto.dto");
 const news_service_1 = require("./news.service");
@@ -24,6 +25,12 @@ let NewsController = class NewsController {
     }
     async createNews(payload) {
         return this.NewsService.createNews(payload);
+    }
+    async addLike(payload) {
+        return this.NewsService.addLike(payload);
+    }
+    async addView(payload) {
+        return this.NewsService.addView(payload);
     }
     async listAllNews(payload) {
         return this.NewsService.listAllNews(payload);
@@ -39,6 +46,8 @@ let NewsController = class NewsController {
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -46,6 +55,26 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "createNews", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.Post)('add-like'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [news_dto_dto_1.addLikeDto]),
+    __metadata("design:returntype", Promise)
+], NewsController.prototype, "addLike", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.Post)('add-view'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [news_dto_dto_1.addViewDto]),
+    __metadata("design:returntype", Promise)
+], NewsController.prototype, "addView", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('list-all'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -53,6 +82,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "listAllNews", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('detail'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -60,6 +91,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "getDetailNews", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('update'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -67,6 +100,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NewsController.prototype, "updateNews", null);
 __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('delete'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

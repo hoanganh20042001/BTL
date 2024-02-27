@@ -54,7 +54,7 @@ export class AuthController {
     return this.authService.createUser(input);
   }
 
-  @Post('/login-student')
+  @Post('/login-client')
   async loginStudent(@Body() input: SigninDto): Promise<AuthTokenOutput> {
     return this.authService.login(input);
   }

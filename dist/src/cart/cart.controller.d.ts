@@ -6,11 +6,20 @@ export declare class CartController {
     constructor(cartService: CartService);
     createCart(payload: createCartDto): Promise<import("../databases/entities/cart.entity").Cart>;
     listAllCart(payload: listAllCartDto): Promise<{
-        list: any;
-        count: any;
+        list: any[];
+        count: number;
     }>;
-    getDetailCart(payload: getDetailCartDto): Promise<any>;
-    updateCart(payload: updateCartDto): Promise<any>;
+    getDetailCart(payload: getDetailCartDto): Promise<import("typeorm").SelectQueryBuilder<import("../databases/entities/cart.entity").Cart>>;
+    updateCart(payload: updateCartDto): Promise<{
+        CartId: number;
+        quantity: number;
+        date: Date;
+        id: number;
+        productId: number;
+        userId: number;
+        createdAt: Date;
+        updatedAt: Date;
+    } & import("../databases/entities/cart.entity").Cart>;
     deleteCart(payload: getDetailCartDto): Promise<{
         status: number;
         message: string;

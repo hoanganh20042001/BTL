@@ -1,6 +1,5 @@
 export declare class listAllOrderDto {
-    page: number;
-    limit: number;
+    userId: number;
     search: string;
 }
 export declare class getDetailOrderDto {

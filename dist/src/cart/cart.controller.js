@@ -26,7 +26,7 @@ let CartController = class CartController {
         return this.cartService.createCart(payload);
     }
     async listAllCart(payload) {
-        return this.cartService.listAllCart(payload);
+        return this.cartService.listAllCartByUserId(payload);
     }
     async getDetailCart(payload) {
         return this.cartService.getDetailCart(payload);
@@ -46,7 +46,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CartController.prototype, "createCart", null);
 __decorate([
-    (0, common_1.Get)('list-all'),
+    (0, common_1.Get)('list-by-userId'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [list_all_cart_dto_dto_1.listAllCartDto]),

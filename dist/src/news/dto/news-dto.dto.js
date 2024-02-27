@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateNewsDto = exports.createNewsDto = void 0;
+exports.addViewDto = exports.addLikeDto = exports.updateNewsDto = exports.createNewsDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const class_transformer_1 = require("class-transformer");
 const class_validator_1 = require("class-validator");
@@ -73,4 +73,28 @@ __decorate([
     __metadata("design:type", String)
 ], updateNewsDto.prototype, "content", void 0);
 exports.updateNewsDto = updateNewsDto;
+class addLikeDto {
+}
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], addLikeDto.prototype, "newsId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], addLikeDto.prototype, "userId", void 0);
+exports.addLikeDto = addLikeDto;
+class addViewDto {
+}
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: true }),
+    (0, class_transformer_1.Type)(() => Number),
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], addViewDto.prototype, "newsId", void 0);
+exports.addViewDto = addViewDto;
 //# sourceMappingURL=news-dto.dto.js.map

@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PayController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const auth_guard_1 = require("../auth/guards/auth.guard");
 const list_all_pay_dto_dto_1 = require("./dto/list-all-pay-dto.dto");
 const pay_dto_dto_1 = require("./dto/pay-dto.dto");
 const pay_service_1 = require("./pay.service");
@@ -29,19 +28,29 @@ let PayController = class PayController {
     async listAllPay(payload) {
         return this.payService.listAllPay(payload);
     }
+    async listPayByUserId(payload) {
+        return this.payService.listPayByUserId(payload);
+    }
+    async getCost(payload) {
+        return this.payService.getCost(payload);
+    }
+    async listPayByStatus(payload) {
+        return this.payService.listPayByStatus(payload);
+    }
     async getDetailPay(payload) {
         return this.payService.getDetailPay(payload);
     }
     async updatePay(payload) {
         return await this.payService.updatePay(payload);
     }
+    async updateStatusPay(payload) {
+        return await this.payService.updateStatusPay(payload);
+    }
     async deletePay(payload) {
         return this.payService.deletePay(payload);
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -49,8 +58,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PayController.prototype, "createPay", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Get)('list-all'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -58,8 +65,27 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PayController.prototype, "listAllPay", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.Get)('list-by-userId'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [list_all_pay_dto_dto_1.listPayByUserIdDto]),
+    __metadata("design:returntype", Promise)
+], PayController.prototype, "listPayByUserId", null);
+__decorate([
+    (0, common_1.Get)('cost'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [list_all_pay_dto_dto_1.getCostDto]),
+    __metadata("design:returntype", Promise)
+], PayController.prototype, "getCost", null);
+__decorate([
+    (0, common_1.Get)('list-by-status'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [list_all_pay_dto_dto_1.listPayByStatusDto]),
+    __metadata("design:returntype", Promise)
+], PayController.prototype, "listPayByStatus", null);
+__decorate([
     (0, common_1.Get)('detail'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
@@ -67,8 +93,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PayController.prototype, "getDetailPay", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
     (0, common_1.Post)('update'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -76,8 +100,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], PayController.prototype, "updatePay", null);
 __decorate([
-    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
-    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.Post)('update-status'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [pay_dto_dto_1.updateStatusPayDto]),
+    __metadata("design:returntype", Promise)
+], PayController.prototype, "updateStatusPay", null);
+__decorate([
     (0, common_1.Post)('delete'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),

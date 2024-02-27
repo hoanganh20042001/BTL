@@ -16,21 +16,11 @@ const class_validator_1 = require("class-validator");
 class listAllOrderDto {
 }
 __decorate([
-    (0, swagger_1.ApiProperty)({ default: 1, required: true }),
+    (0, swagger_1.ApiProperty)({ required: true }),
     (0, class_transformer_1.Type)(() => Number),
-    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(1),
     __metadata("design:type", Number)
-], listAllOrderDto.prototype, "page", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ default: 10, required: true }),
-    (0, class_transformer_1.Type)(() => Number),
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.Min)(1),
-    __metadata("design:type", Number)
-], listAllOrderDto.prototype, "limit", void 0);
+], listAllOrderDto.prototype, "userId", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)({ required: false }),
     (0, class_validator_1.IsString)(),

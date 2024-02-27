@@ -4,6 +4,8 @@ export declare class Pay extends BaseEntity {
     accountNumber: string;
     date: Date;
     cost: number;
+    discountId: number;
+    userId: number;
     status: string;
     bankName: string;
     createdAt: Date;

@@ -3,7 +3,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthenticationGuard } from 'src/auth/guards/auth.guard';
 
 import { getDetailOrderDto,listAllOrderDto } from './dto/list-all-order-dto.dto';
-import { createOrderDto, updateOrderDto } from './dto/order-dto.dto';
+import { createOrderDto, payInOrderDto, updateOrderDto } from './dto/order-dto.dto';
 import { OrderService } from './order.service';
 
 @ApiTags('order')
@@ -43,6 +43,17 @@ export class OrderController {
     @Body() payload: updateOrderDto
   ) {
     return await this.orderService.updateOrder(
+      payload
+    );
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('pay')
+  async pay(
+    @Body() payload: payInOrderDto
+  ) {
+    return await this.orderService.pay(
       payload
     );
   }

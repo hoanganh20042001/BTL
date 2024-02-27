@@ -1,6 +1,5 @@
 export declare class listAllCartDto {
-    page: number;
-    limit: number;
+    userId: string;
     search: string;
 }
 export declare class getDetailCartDto {

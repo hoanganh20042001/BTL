@@ -11,3 +11,10 @@ export declare class updateNewsDto {
     newDate: Date;
     content: string;
 }
+export declare class addLikeDto {
+    newsId: number;
+    userId: number;
+}
+export declare class addViewDto {
+    newsId: number;
+}

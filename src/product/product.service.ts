@@ -15,14 +15,22 @@ export class ProductService {
     private readonly typeRepository: TypeRepository,
     private readonly categoryRepository: CategoryRepository,
   ) { }
-  async createProduct(input: createProductDto) {
+  async createProduct(input: createProductDto,url:string) {
     try {
       const newProduct = this.productRepository.create(input);
+       await newProduct.save();
+      let discountedPrice=0;
+      if(newProduct.discount<100){
+        discountedPrice=((newProduct.discount+100)*newProduct.price)/100;
+      }
+      else{
+      discountedPrice=newProduct.discount+newProduct.price;}
+      newProduct.discountedPrice=discountedPrice;
+      newProduct.image=url;
       return await newProduct.save();
     } catch (error) {
       throw new BadRequestException('Có lỗi xảy ra!')
     }
-
   }
 
   async listAllProduct(payload: listAllProductDto) {
@@ -77,14 +85,23 @@ export class ProductService {
 
   }
 
-  async updateProduct(payload: updateProductDto) {
+  async updateProduct(payload: updateProductDto,url:string) {
 
     const findProductById = await this.productRepository.findOne(payload.ProductId);
     if (!findProductById) {
       throw new BadRequestException("Product_is_not_exist");
     }
     const updatedItem = { ...findProductById, ...payload };
-    return await this.productRepository.save(updatedItem);
+     await this.productRepository.save(updatedItem);
+     let discountedPrice=0;
+     if(findProductById.discount<100){
+       discountedPrice=((findProductById.discount+100)*findProductById.price)/100;
+     }
+     else{
+     discountedPrice=findProductById.discount+findProductById.price;}
+     findProductById.discountedPrice=discountedPrice;
+     findProductById.image=url;
+     return await findProductById.save();
   }
 
   async deleteProduct(payload: getDetailProductDto) {

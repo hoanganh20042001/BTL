@@ -24,9 +24,9 @@ export class CartController {
 
   // @UseGuards(AuthenticationGuard)
   // @ApiBearerAuth()
-  @Get('list-all')
+  @Get('list-by-userId')
   async listAllCart(@Query() payload: listAllCartDto) {
-    return this.cartService.listAllCart(payload);
+    return this.cartService.listAllCartByUserId(payload);
   }
 
   // @UseGuards(AuthenticationGuard)

@@ -27,6 +27,9 @@ export class Order extends BaseEntity {
 
   @Column({ name: 'payId', nullable: true })
   payId: number;
+
+  @Column({ name: 'status', default:0 })
+  status: number;
   
   @CreateDateColumn({ name: 'createdAt' })
   createdAt: Date;

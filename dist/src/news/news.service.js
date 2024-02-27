@@ -12,14 +12,44 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewsService = void 0;
 const common_1 = require("@nestjs/common");
 const news_repository_1 = require("./news.repository");
+const like_repository_1 = require("./like.repository");
 let NewsService = class NewsService {
-    constructor(newsRepository) {
+    constructor(newsRepository, likeRepository) {
         this.newsRepository = newsRepository;
+        this.likeRepository = likeRepository;
     }
     async createNews(input) {
         try {
             const newNews = this.newsRepository.create(input);
             return await newNews.save();
+        }
+        catch (error) {
+            throw new common_1.BadRequestException('Có lỗi xảy ra!');
+        }
+    }
+    async addLike(input) {
+        try {
+            const newLike = this.likeRepository.create(input);
+            const findNewsById = await this.newsRepository.findOne(input.newsId);
+            if (!findNewsById) {
+                throw new common_1.BadRequestException("News_is_not_exist");
+            }
+            findNewsById.liked = findNewsById.liked + 1;
+            findNewsById.save();
+            return await newLike.save();
+        }
+        catch (error) {
+            throw new common_1.BadRequestException('Có lỗi xảy ra!');
+        }
+    }
+    async addView(input) {
+        try {
+            const findNewsById = await this.newsRepository.findOne(input.newsId);
+            if (!findNewsById) {
+                throw new common_1.BadRequestException("News_is_not_exist");
+            }
+            findNewsById.view = findNewsById.view + 1;
+            return await findNewsById.save();
         }
         catch (error) {
             throw new common_1.BadRequestException('Có lỗi xảy ra!');
@@ -72,7 +102,8 @@ let NewsService = class NewsService {
 };
 NewsService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [news_repository_1.NewsRepository])
+    __metadata("design:paramtypes", [news_repository_1.NewsRepository,
+        like_repository_1.LikeRepository])
 ], NewsService);
 exports.NewsService = NewsService;
 //# sourceMappingURL=news.service.js.map

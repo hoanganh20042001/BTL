@@ -1,22 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsNumber, IsOptional, IsString, Max, Min } from "class-validator";
+import { IsArray, IsNumber, IsOptional, IsString, Max, Min, ValidateNested } from "class-validator";
+import { orderItemDto } from "./pay-dto.dto";
 
 export class listAllPayDto {
-  // @ApiProperty({ default: 1, required: true })
-  // @Type(() => Number)
-  // @IsOptional()
-  // @IsNumber()
-  // @Min(1)
-  // page: number;
-
-  // @ApiProperty({ default: 10, required: true })
-  // @Type(() => Number)
-  // @IsOptional()
-  // @IsNumber()
-  // @Min(1)
-  // limit: number;
-
   @ApiProperty({ required: false })
   @IsString()
   @IsOptional()
@@ -35,3 +22,28 @@ export class getDetailPayDto {
   @IsNumber()
   PayId: number;
 }
+export class listPayByUserIdDto {
+  @ApiProperty({ required: true })
+  @IsNumber()
+  @IsOptional()
+  userId: number;
+
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  search: string;
+}
+
+export class getCostDto {
+
+  @ApiProperty({ required: false })
+  @IsNumber()
+  @IsOptional()
+  discountId: number;
+
+  @ApiProperty({ type: [orderItemDto] })
+  @IsArray()
+  @ValidateNested({ each: true })
+  orderItems: orderItemDto[];
+}
+

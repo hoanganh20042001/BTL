@@ -12,12 +12,14 @@ const typeorm_1 = require("@nestjs/typeorm");
 const cart_controller_1 = require("./cart.controller");
 const cart_repository_1 = require("./cart.repository");
 const cart_service_1 = require("./cart.service");
+const product_repository_1 = require("../product/product.repository");
+const user_repository_1 = require("../user/user.repository");
 let CartModule = class CartModule {
 };
 CartModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([
-                cart_repository_1.CartRepository
+                cart_repository_1.CartRepository, product_repository_1.ProductRepository, user_repository_1.UserRepository
             ])],
         controllers: [cart_controller_1.CartController],
         providers: [cart_service_1.CartService]

@@ -1,18 +1,50 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 
 import { getDetailNewsDto,listAllNewsDto } from './dto/list-all-news-dto.dto';
-import { createNewsDto, updateNewsDto } from './dto/news-dto.dto';
+import { addLikeDto, addViewDto, createNewsDto, updateNewsDto } from './dto/news-dto.dto';
 import { NewsRepository } from './news.repository';
+import { LikeRepository } from './like.repository';
 
 @Injectable()
 export class NewsService {
   constructor(
-    private readonly newsRepository: NewsRepository
+    private readonly newsRepository: NewsRepository,
+    private readonly likeRepository: LikeRepository
   ) { }
   async createNews(input: createNewsDto) {
     try {
       const newNews = this.newsRepository.create(input);
       return await newNews.save();
+    } catch (error) {
+      throw new BadRequestException('Có lỗi xảy ra!')
+    }
+
+  }
+
+  async addLike(input: addLikeDto) {
+    try {
+      const newLike = this.likeRepository.create(input);
+      const findNewsById = await this.newsRepository.findOne(input.newsId);
+      if (!findNewsById) {
+        throw new BadRequestException("News_is_not_exist");
+      }
+      findNewsById.liked=findNewsById.liked+1;
+      findNewsById.save();
+      return await newLike.save();
+    } catch (error) {
+      throw new BadRequestException('Có lỗi xảy ra!')
+    }
+
+  }
+
+  async addView(input: addViewDto) {
+    try {
+      const findNewsById = await this.newsRepository.findOne(input.newsId);
+      if (!findNewsById) {
+        throw new BadRequestException("News_is_not_exist");
+      }
+      findNewsById.view=findNewsById.view+1;
+      return await findNewsById.save();
     } catch (error) {
       throw new BadRequestException('Có lỗi xảy ra!')
     }

@@ -25,6 +25,9 @@ export class Product extends BaseEntity {
   @Column({ name: 'discount', nullable: true })
   discount: number;
 
+  @Column({ name: 'discountedPrice', default:0 })
+  discountedPrice: number;
+
   @Column({ name: 'categoryId', nullable: true })
   categoryId: number;
 
@@ -46,7 +49,7 @@ export class Product extends BaseEntity {
   @Column({ name: 'date', nullable: true })
   date:Date;
 
-  @Column({ name: 'status', nullable: true })
+  @Column({ name: 'status', default:'AVAILABLE'})
   status: string;
 
   @Column({ name: 'description', nullable: true })

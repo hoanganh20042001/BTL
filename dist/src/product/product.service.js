@@ -22,9 +22,19 @@ let ProductService = class ProductService {
         this.typeRepository = typeRepository;
         this.categoryRepository = categoryRepository;
     }
-    async createProduct(input) {
+    async createProduct(input, url) {
         try {
             const newProduct = this.productRepository.create(input);
+            await newProduct.save();
+            let discountedPrice = 0;
+            if (newProduct.discount < 100) {
+                discountedPrice = ((newProduct.discount + 100) * newProduct.price) / 100;
+            }
+            else {
+                discountedPrice = newProduct.discount + newProduct.price;
+            }
+            newProduct.discountedPrice = discountedPrice;
+            newProduct.image = url;
             return await newProduct.save();
         }
         catch (error) {
@@ -75,13 +85,23 @@ let ProductService = class ProductService {
             .where('b.id = :id', { id: ProductId }).getRawOne();
         return Product;
     }
-    async updateProduct(payload) {
+    async updateProduct(payload, url) {
         const findProductById = await this.productRepository.findOne(payload.ProductId);
         if (!findProductById) {
             throw new common_1.BadRequestException("Product_is_not_exist");
         }
         const updatedItem = Object.assign(Object.assign({}, findProductById), payload);
-        return await this.productRepository.save(updatedItem);
+        await this.productRepository.save(updatedItem);
+        let discountedPrice = 0;
+        if (findProductById.discount < 100) {
+            discountedPrice = ((findProductById.discount + 100) * findProductById.price) / 100;
+        }
+        else {
+            discountedPrice = findProductById.discount + findProductById.price;
+        }
+        findProductById.discountedPrice = discountedPrice;
+        findProductById.image = url;
+        return await findProductById.save();
     }
     async deleteProduct(payload) {
         const { ProductId } = payload;

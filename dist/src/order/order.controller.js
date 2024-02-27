@@ -35,6 +35,9 @@ let OrderController = class OrderController {
     async updateOrder(payload) {
         return await this.orderService.updateOrder(payload);
     }
+    async pay(payload) {
+        return await this.orderService.pay(payload);
+    }
     async deleteOrder(payload) {
         return this.orderService.deleteOrder(payload);
     }
@@ -75,6 +78,15 @@ __decorate([
     __metadata("design:paramtypes", [order_dto_dto_1.updateOrderDto]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "updateOrder", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, common_1.Post)('pay'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [order_dto_dto_1.payInOrderDto]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "pay", null);
 __decorate([
     (0, common_1.UseGuards)(auth_guard_1.AuthenticationGuard),
     (0, swagger_1.ApiBearerAuth)(),

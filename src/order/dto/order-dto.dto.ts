@@ -32,3 +32,16 @@ export class updateOrderDto {
   quantity: number;
 
 }
+
+export class payInOrderDto {
+  @ApiProperty({ required: true })
+  @Type(() => Number)
+  @IsNumber()
+  OrderId: number;
+
+  @ApiProperty()
+  @IsNumber()
+  @IsOptional()
+  payId: number;
+
+}

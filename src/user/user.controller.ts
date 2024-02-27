@@ -22,22 +22,22 @@ export class UserController {
   //   return this.userService.createUser(payload);
   // }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('list-all-client')
   async listAllUser(@Query() payload: listAllUserDto) {
     return this.userService.listAllClient(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('detail')
   async getDetailUser(@Query() payload: getDetailUserDto) {
     return this.userService.getDetailUser(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('update')
   async updateUser(
     @Body() payload: updateUserDto
