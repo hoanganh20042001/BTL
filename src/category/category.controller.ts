@@ -6,15 +6,15 @@ import { getDetailCategoryDto,listAllCategoryDto } from './dto/list-all-category
 import { createCategoryDto, updateCategoryDto } from './dto/category-dto.dto';
 import { CategoryService } from './category.service';
 
-@ApiTags('Category')
-@Controller('Category')
+@ApiTags('category')
+@Controller('category')
 export class CategoryController {
   constructor(
     private readonly CategoryService: CategoryService
   ) { }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('create')
   async createCategory(
     @Body() payload: createCategoryDto
@@ -22,22 +22,22 @@ export class CategoryController {
     return this.CategoryService.createCategory(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('list-all')
   async listAllCategory(@Query() payload: listAllCategoryDto) {
     return this.CategoryService.listAllCategory(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Get('detail')
   async getDetailCategory(@Query() payload: getDetailCategoryDto) {
     return this.CategoryService.getDetailCategory(payload);
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('update')
   async updateCategory(
     @Body() payload: updateCategoryDto
@@ -47,8 +47,8 @@ export class CategoryController {
     );
   }
 
-  // @UseGuards(AuthenticationGuard)
-  // @ApiBearerAuth()
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
   @Post('delete')
   async deleteCategory(@Query() payload: getDetailCategoryDto) {
     return this.CategoryService.deleteCategory(payload);

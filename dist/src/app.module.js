@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
@@ -21,12 +24,31 @@ const category_module_1 = require("./category/category.module");
 const upload_module_1 = require("./upload/upload.module");
 const product_module_1 = require("./product/product.module");
 const news_module_1 = require("./news/news.module");
+const discount_module_1 = require("./discount/discount.module");
+const type_module_1 = require("./type/type.module");
+const mail_module_1 = require("./mail/mail.module");
+const brand_module_1 = require("./brand/brand.module");
+const cart_module_1 = require("./cart/cart.module");
+const order_module_1 = require("./order/order.module");
+const pay_module_1 = require("./pay/pay.module");
+const review_module_1 = require("./review/review.module");
+const address_module_1 = require("./address/address.module");
+const backup_module_1 = require("./backup/backup.module");
+const minio_module_1 = require("./minio/minio.module");
+const config_1 = require("@nestjs/config");
+const backup_config_1 = require("./config/backup.config");
+const mail_config_1 = __importDefault(require("./config/mail.config"));
 require('dotenv').config();
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [
+        imports: [config_1.ConfigModule.forRoot({
+                isGlobal: true,
+                envFilePath: ['.env'],
+                load: [mail_config_1.default, backup_config_1.getBackupConfig],
+                cache: true,
+            }),
             orm_1.OrmModule,
             example_module_1.ExampleModule,
             user_module_1.UserModule,
@@ -37,7 +59,18 @@ AppModule = __decorate([
             category_module_1.CategoryModule,
             upload_module_1.UploadsModule,
             product_module_1.ProductModule,
-            news_module_1.NewsModule
+            news_module_1.NewsModule,
+            discount_module_1.DiscountModule,
+            type_module_1.TypeModule,
+            mail_module_1.MailModule,
+            brand_module_1.BrandModule,
+            cart_module_1.CartModule,
+            order_module_1.OrderModule,
+            pay_module_1.PayModule,
+            review_module_1.ReviewModule,
+            address_module_1.AddressModule,
+            backup_module_1.BackupModule,
+            minio_module_1.MinioModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService]

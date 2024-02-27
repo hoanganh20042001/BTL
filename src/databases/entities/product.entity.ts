@@ -12,7 +12,7 @@ import {
 
 
 @Entity('product')
-export class Account extends BaseEntity {
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -25,14 +25,32 @@ export class Account extends BaseEntity {
   @Column({ name: 'discount', nullable: true })
   discount: number;
 
+  @Column({ name: 'discountedPrice', default:0 })
+  discountedPrice: number;
+
   @Column({ name: 'categoryId', nullable: true })
   categoryId: number;
+
+  @Column({ name: 'typeId', nullable: true })
+  typeId: number;
+
+  @Column({ name: 'brandId', nullable: true })
+  brandId: number;
+
+  @Column({ name: 'quantity', nullable: true })
+  quantity: number;
 
   @Column({ name: 'price', nullable: true })
   price: number;
 
-  @Column({ name: 'isActive', nullable: true })
-  isActive: number;
+  @Column({ name: 'sold', nullable: true })
+  sold: number;
+
+  @Column({ name: 'date', nullable: true })
+  date:Date;
+
+  @Column({ name: 'status', default:'AVAILABLE'})
+  status: string;
 
   @Column({ name: 'description', nullable: true })
   description: string;

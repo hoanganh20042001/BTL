@@ -9,40 +9,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Account = void 0;
+exports.Order = void 0;
 const typeorm_1 = require("typeorm");
-let Account = class Account extends typeorm_1.BaseEntity {
+let Order = class Order extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Account.prototype, "id", void 0);
+], Order.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'productId', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "productId", void 0);
+], Order.prototype, "productId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'quantity', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "quantity", void 0);
+], Order.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'userId', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "userId", void 0);
+], Order.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'payId', nullable: true }),
-    __metadata("design:type", String)
-], Account.prototype, "payId", void 0);
+    __metadata("design:type", Number)
+], Order.prototype, "payId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'status', default: 0 }),
+    __metadata("design:type", Number)
+], Order.prototype, "status", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "createdAt", void 0);
+], Order.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updatedAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "updatedAt", void 0);
-Account = __decorate([
+], Order.prototype, "updatedAt", void 0);
+Order = __decorate([
     (0, typeorm_1.Entity)('order')
-], Account);
-exports.Account = Account;
+], Order);
+exports.Order = Order;
 //# sourceMappingURL=order.entity.js.map

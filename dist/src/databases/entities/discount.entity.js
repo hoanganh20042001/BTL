@@ -9,40 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Account = void 0;
+exports.Discount = void 0;
 const typeorm_1 = require("typeorm");
-let Account = class Account extends typeorm_1.BaseEntity {
+let Discount = class Discount extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Account.prototype, "id", void 0);
+], Discount.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'name', nullable: true }),
     __metadata("design:type", String)
-], Account.prototype, "name", void 0);
+], Discount.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'value', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "value", void 0);
+], Discount.prototype, "value", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'isActive', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "isActive", void 0);
+], Discount.prototype, "isActive", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'description', nullable: true }),
     __metadata("design:type", String)
-], Account.prototype, "description", void 0);
+], Discount.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "createdAt", void 0);
+], Discount.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updatedAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "updatedAt", void 0);
-Account = __decorate([
+], Discount.prototype, "updatedAt", void 0);
+Discount = __decorate([
     (0, typeorm_1.Entity)('discount')
-], Account);
-exports.Account = Account;
+], Discount);
+exports.Discount = Discount;
 //# sourceMappingURL=discount.entity.js.map

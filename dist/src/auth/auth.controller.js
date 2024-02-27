@@ -53,7 +53,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "registerUser", null);
 __decorate([
-    (0, common_1.Post)('/login-student'),
+    (0, common_1.Post)('/login-client'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [sign_in_dto_1.SigninDto]),

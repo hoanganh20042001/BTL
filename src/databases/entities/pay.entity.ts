@@ -12,7 +12,7 @@ import {
 
 
 @Entity('pay')
-export class Account extends BaseEntity {
+export class Pay extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -24,6 +24,12 @@ export class Account extends BaseEntity {
 
   @Column({ name: 'cost', nullable: true })
   cost: number;
+
+  @Column({ name: 'discountId', nullable: true })
+  discountId: number;
+
+  @Column({ name: 'userId', nullable: true })
+  userId: number;
 
   @Column({ name: 'status', nullable: true })
   status: string;

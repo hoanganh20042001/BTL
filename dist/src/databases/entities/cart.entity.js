@@ -9,40 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Account = void 0;
+exports.Cart = void 0;
 const typeorm_1 = require("typeorm");
-let Account = class Account extends typeorm_1.BaseEntity {
+let Cart = class Cart extends typeorm_1.BaseEntity {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Account.prototype, "id", void 0);
+], Cart.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'productId', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "productId", void 0);
+], Cart.prototype, "productId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'quantity', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "quantity", void 0);
+], Cart.prototype, "quantity", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'userId', nullable: true }),
     __metadata("design:type", Number)
-], Account.prototype, "userId", void 0);
+], Cart.prototype, "userId", void 0);
 __decorate([
     (0, typeorm_1.Column)({ name: 'date', nullable: true }),
     __metadata("design:type", Date)
-], Account.prototype, "date", void 0);
+], Cart.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)({ name: 'createdAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "createdAt", void 0);
+], Cart.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ name: 'updatedAt' }),
     __metadata("design:type", Date)
-], Account.prototype, "updatedAt", void 0);
-Account = __decorate([
-    (0, typeorm_1.Entity)('review')
-], Account);
-exports.Account = Account;
+], Cart.prototype, "updatedAt", void 0);
+Cart = __decorate([
+    (0, typeorm_1.Entity)('cart')
+], Cart);
+exports.Cart = Cart;
 //# sourceMappingURL=cart.entity.js.map
