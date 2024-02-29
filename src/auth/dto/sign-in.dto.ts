@@ -18,3 +18,9 @@ export class SigninDto {
   @IsString()
   passWord: string;
 }
+export class forgetPassDto {
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  email: string;
+}

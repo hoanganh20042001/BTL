@@ -25,8 +25,7 @@ let MailService = class MailService {
             context: {
                 name: obj.name,
                 code: obj.code,
-                cccd: obj.cccd,
-            },
+            }
         });
     }
     async sendNewPassword(obj, lang = 'en') {
@@ -55,6 +54,13 @@ let MailService = class MailService {
                 cost: obj.cost,
                 bankName: obj.bankName,
             },
+        });
+    }
+    async sendAccountVerification(obj, lang = 'en') {
+        await this.mailerService.sendMail({
+            to: obj.emailTo,
+            subject: obj.subject,
+            template: `./account-verification.${lang}.hbs`,
         });
     }
 };

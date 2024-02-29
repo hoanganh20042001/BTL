@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcrypt';
 import { plainToClass } from 'class-transformer';
@@ -14,8 +14,9 @@ import { RequestContext } from './decorators/request-context.dto';
 import { AuthTokenOutput, saveTokenCodeDto, UserAccessTokenClaims } from './dto/auth-token-output.dto';
 import { ChangePasswordDto } from './dto/change-password.dto';
 import { SaveTokenDto } from './dto/save-token.dto';
-import { SigninDto } from './dto/sign-in.dto';
-import { SignupDto } from './dto/sign-up.dto';
+import { forgetPassDto, SigninDto } from './dto/sign-in.dto';
+import { confirmationInput, resetPassword, SignupDto } from './dto/sign-up.dto';
+import { MailService } from 'src/mail/mail.service';
 
 const moment = require('moment');
 @Injectable()
@@ -25,6 +26,7 @@ export class AuthService {
     private userTokenRepository: UserTokenRepository,
     private userRepository: UserRepository,
     private roleRepository: RoleRepository,
+    private mailService: MailService,
   ) { }
 
   // private readonly _server: OAuth2Server;
@@ -66,6 +68,15 @@ export class AuthService {
     if (filter.test(email) == false) { return false }
     else return true;
   }
+  async verificationCode() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let code = '';
+    const charactersLength = characters.length;
+    for (let i = 0; i < 6; i++) {
+      code += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return code;
+  }
 
   //create user
   async createUser(input: SignupDto) {
@@ -84,12 +95,62 @@ export class AuthService {
     if (await this.checkEmail(input.email) === false) {
       throw new BadRequestException(MESSAGE.email_is_not_format);
     }
+    try {
+      const newUser = await this.userRepository.create(input);
+      newUser.passWord = await this.hashPassword(input.passWord);
+      newUser.code = await this.verificationCode();
+      newUser.isActive = 0;
 
-    const newUser = await this.userRepository.create(input);
-    newUser.passWord = await this.hashPassword(input.passWord);
-    return await newUser.save();
+      this.mailService.sendNewUser({
+        emailTo: input.email,
+        subject: 'Đăng ký',
+        name: input.fullName,
+        code: newUser.code,
+      })
+      return await newUser.save();
+    } catch (err) {
+      throw new InternalServerErrorException({
+        result: false,
+        message: 'Singup error',
+        data: null,
+        statusCode: 500,
+      });
+    }
   }
 
+  async confirmation(input: confirmationInput) {
+    try {
+      const findUser = await this.userRepository.findOne({
+
+        email: input.email,
+        code: input.code,
+      });
+      console.log(findUser);
+
+      if (!findUser) {
+        throw new BadRequestException();
+      }
+      findUser.isActive = 1;
+      this.mailService.sendAccountVerification({
+        emailTo: input.email,
+        subject: 'Xác nhận đăng ký tài khoản.',
+      })
+      // const updateUser=await this.userRepository.update(findUser.id, { isActive: 1 });
+      findUser.save();
+      return {
+        status: 200,
+        message: 'Success'
+      };
+    } catch (err) {
+      throw new InternalServerErrorException({
+        result: false,
+        message: 'Confirmation error',
+        data: null,
+        statusCode: 500,
+      });
+    }
+  }
+  
   async getActiveUserToken(id: number, role?): Promise<UserToken> | null {
     const activeUser = await this.userTokenRepository.findOne({
       userId: id,
@@ -327,5 +388,73 @@ export class AuthService {
 
     await user.save();
     return { status: true, message: 'Đổi mật khẩu thành công!' };
+  }
+
+  async forgetPassword(input: forgetPassDto) {
+    const findUserByEmail = await this.userRepository.findOne({
+      email: input.email
+    });
+    console.log(findUserByEmail);
+    if (!findUserByEmail) {
+      throw new BadRequestException(MESSAGE.user_not_found);
+    }
+    try {
+
+      findUserByEmail.forgetPassCode = await this.verificationCode();
+      this.mailService.sendNewPassword({
+        emailTo: input.email,
+        subject: 'Quên mật khẩu',
+        name: findUserByEmail.fullName,
+        code: findUserByEmail.forgetPassCode,
+      })
+      await findUserByEmail.save();
+      return { status: 200, message: 'Đã gửi mã đặt lại mật khẩu về email' };
+    } catch (err) {
+      throw new InternalServerErrorException({
+        result: false,
+        message: 'Forget Password error',
+        data: null,
+        statusCode: 500,
+      });
+    }
+  }
+
+  async confirmationForgetPassword(input: confirmationInput) {
+    const findUser = await this.userRepository.findOne({
+      email: input.email,
+
+    });
+    if (!findUser) {
+      throw new BadRequestException(MESSAGE.user_not_found);
+    }
+    if (findUser.forgetPassCode === input.code) {
+      return {
+        status: 200,
+        message: 'Success'
+      };
+    }
+    else {
+      return {
+        status: 500,
+        message: 'Fail'
+      };
+    }
+  }
+
+  async resetPassword(input: resetPassword) {
+
+    const findUser = await this.userRepository.findOne({
+      email: input.email
+    });
+    if (!findUser) {
+      throw new BadRequestException(MESSAGE.user_not_found);
+    }
+    if (input.passWord != input.repassWord) {
+      throw new BadRequestException('reset pass fail');
+    }
+    findUser.passWord = await this.hashPassword(input.passWord);
+
+    return await findUser.save();
+
   }
 }

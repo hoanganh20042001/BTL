@@ -5,3 +5,7 @@ export declare class SignupDto {
     phoneNumber: string;
     roleId: number;
 }
+export declare class confirmationInput {
+    email: string;
+    code: string;
+}

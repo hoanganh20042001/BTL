@@ -27,3 +27,29 @@ export class SignupDto {
   @IsOptional()
   roleId: number;
 }
+
+export class confirmationInput {
+  @ApiProperty({ required: true })
+  @IsString()
+  email: string;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @ApiProperty()
+  code: string;
+}
+export class resetPassword {
+  @ApiProperty({ required: true })
+  @IsString()
+  email: string;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  passWord: string;
+
+  @ApiProperty({ required: true })
+  @IsNotEmpty()
+  @IsString()
+  repassWord: string;
+}

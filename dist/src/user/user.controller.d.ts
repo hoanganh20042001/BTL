@@ -18,6 +18,7 @@ export declare class UserController {
         id: number;
         userName: string;
         passWord: string;
+        code: string;
         roleId: number;
         addressId: number;
         isActive: number;

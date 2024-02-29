@@ -7,7 +7,6 @@ export declare class MailService {
         subject: any;
         name: any;
         code: any;
-        cccd: any;
     }, lang?: string): Promise<void>;
     sendNewPassword(obj: {
         emailTo: any;
@@ -24,5 +23,9 @@ export declare class MailService {
         name: any;
         cost: any;
         bankName: any;
+    }, lang?: string): Promise<void>;
+    sendAccountVerification(obj: {
+        emailTo: any;
+        subject: any;
     }, lang?: string): Promise<void>;
 }

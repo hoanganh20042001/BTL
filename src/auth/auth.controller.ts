@@ -34,8 +34,8 @@ import {
 } from './dto/auth-token-output.dto';
 import { CheckUserDto } from './dto/check-user.dto';
 import { ForgotPasswordDto, NewPasswordDto } from './dto/forgot-password.dto';
-import { SigninDto } from './dto/sign-in.dto';
-import { SignupDto } from './dto/sign-up.dto';
+import { SigninDto, forgetPassDto } from './dto/sign-in.dto';
+import { SignupDto, confirmationInput, resetPassword } from './dto/sign-up.dto';
 import { AuthenticationGuard } from './guards/auth.guard';
 import { JwtRefreshGuard } from './guards/jwt-refresh.guard';
 
@@ -93,6 +93,27 @@ export class AuthController {
   @Post('logout')
   logout(@Req() req) {
     return this.authService.logout(req);
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('forget-password')
+  async forgetPassword(@Body() input: forgetPassDto) {
+    return this.authService.forgetPassword(input);
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('confirm-forget-password')
+  async confirmForgetPassword(@Body() input: confirmationInput) {
+    return this.authService.confirmationForgetPassword(input);
+  }
+
+  @UseGuards(AuthenticationGuard)
+  @ApiBearerAuth()
+  @Post('reset-password')
+  async resetPassword(@Body() input: resetPassword) {
+    return this.authService.resetPassword(input);
   }
 
 }
