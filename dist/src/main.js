@@ -6,7 +6,6 @@ const swagger_1 = require("@nestjs/swagger");
 const path_1 = require("path");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
-    const dirname = __dirname.replace('dist/', '');
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.useStaticAssets((0, path_1.join)(process.cwd(), 'uploads'), {
         prefix: '/upload/',

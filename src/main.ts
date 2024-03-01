@@ -13,7 +13,7 @@ import { AppModule } from './app.module';
 // const basicAuth = require('express-basic-auth')
 async function bootstrap() {
   // const server = express();
-  const dirname = __dirname.replace('dist/', '')
+  // const dirname = __dirname.replace('dist/', '')
   const app = await NestFactory.create<NestExpressApplication>(AppModule,);
   app.useStaticAssets(join(process.cwd(), 'uploads'), {
     prefix: '/upload/',

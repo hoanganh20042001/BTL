@@ -13,7 +13,6 @@ export declare class MailService {
         subject: any;
         name: any;
         code: any;
-        cccd: any;
     }, lang?: string): Promise<void>;
     paymentSuccessful(obj: {
         emailTo: any;

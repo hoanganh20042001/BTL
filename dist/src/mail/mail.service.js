@@ -37,7 +37,6 @@ let MailService = class MailService {
             context: {
                 name: obj.name,
                 code: obj.code,
-                cccd: obj.cccd,
             },
         });
     }
