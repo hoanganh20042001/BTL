@@ -17,5 +17,6 @@ export declare const PRODUCT_NOTIFICATION: {
 };
 export declare enum PAY_STATUS {
     DTT = "DTT",
-    CTT = "CTT"
+    CTT = "CTT",
+    HTT = "HTT"
 }

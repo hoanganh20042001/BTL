@@ -19,6 +19,13 @@ export class User extends BaseEntity {
   @Column({ name: 'passWord' })
   passWord: string;
 
+  @Column({ name: 'code' })
+  code: string;
+
+
+  @Column({ name: 'forgetPassCode' })
+  forgetPassCode: string;
+
   @Column({ name: 'roleId', default: 2 })
   roleId: number;
 

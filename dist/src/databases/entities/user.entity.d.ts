@@ -3,6 +3,8 @@ export declare class User extends BaseEntity {
     id: number;
     userName: string;
     passWord: string;
+    code: string;
+    forgetPassCode: string;
     roleId: number;
     fullName: string;
     phoneNumber: string;

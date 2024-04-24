@@ -26,6 +26,14 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "passWord", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ name: 'code' }),
+    __metadata("design:type", String)
+], User.prototype, "code", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'forgetPassCode' }),
+    __metadata("design:type", String)
+], User.prototype, "forgetPassCode", void 0);
+__decorate([
     (0, typeorm_1.Column)({ name: 'roleId', default: 2 }),
     __metadata("design:type", Number)
 ], User.prototype, "roleId", void 0);

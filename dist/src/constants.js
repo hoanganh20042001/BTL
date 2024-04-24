@@ -23,5 +23,6 @@ var PAY_STATUS;
 (function (PAY_STATUS) {
     PAY_STATUS["DTT"] = "DTT";
     PAY_STATUS["CTT"] = "CTT";
+    PAY_STATUS["HTT"] = "HTT";
 })(PAY_STATUS = exports.PAY_STATUS || (exports.PAY_STATUS = {}));
 //# sourceMappingURL=constants.js.map

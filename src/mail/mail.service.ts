@@ -3,7 +3,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 @Injectable()
 export class MailService {
     constructor(private mailerService: MailerService) { }
-    async sendNewUser(obj: { emailTo, subject, name, code, cccd }, lang = 'en') {
+    async sendNewUser(obj: { emailTo, subject, name, code }, lang = 'en') {
         console.log(obj.name);
         await this.mailerService.sendMail({
             to: obj.emailTo,
@@ -13,12 +13,11 @@ export class MailService {
             context: { // filling curly brackets with content
                 name: obj.name,
                 code: obj.code,
-                cccd: obj.cccd,
-            },
+            }
         });
     }
 
-    async sendNewPassword(obj: { emailTo, subject, name, code, cccd }, lang = 'en') {
+    async sendNewPassword(obj: { emailTo, subject, name, code}, lang = 'en') {
         console.log(obj.name);
         await this.mailerService.sendMail({
             to: obj.emailTo,
@@ -28,7 +27,7 @@ export class MailService {
             context: { // filling curly brackets with content
                 name: obj.name,
                 code: obj.code,
-                cccd: obj.cccd,
+            
             },
         });
     }
@@ -47,6 +46,20 @@ export class MailService {
                 cost: obj.cost,
                 bankName: obj.bankName,
             },
+        });
+    }
+
+    async sendAccountVerification(obj: { emailTo, subject }, lang = 'en') {
+        // console.log(obj.name);
+        await this.mailerService.sendMail({
+            to: obj.emailTo,
+            // from: '"WOSS"', // override default from
+            subject: obj.subject,
+            template: `./account-verification.${lang}.hbs`, // `.hbs` extension is appended automatically
+            // context: { // filling curly brackets with content
+            //     name: obj.name,
+            //     status: obj.status
+            // },
         });
     }
 }

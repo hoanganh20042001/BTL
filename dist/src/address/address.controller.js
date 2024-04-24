@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddressController = void 0;
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-const auth_guard_1 = require("../auth/guards/auth.guard");
 const list_all_address_dto_dto_1 = require("./dto/list-all-address-dto.dto");
 const address_dto_dto_1 = require("./dto/address-dto.dto");
 const address_service_1 = require("./address.service");
+const auth_guard_1 = require("../dto/auth/guards/auth.guard");
 let AddressController = class AddressController {
     constructor(addressService) {
         this.addressService = addressService;
